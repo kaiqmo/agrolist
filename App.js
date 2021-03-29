@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import MenuScreen from './src/screens/MenuScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {// paginas
+    Home: HomeScreen,
+    Menu:MenuScreen,
+    Login:LoginScreen,
+    SignUp:SignUpScreen
   },
-});
+  {// rota inicial!
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      title: 'Gadolandia',
+    },
+  }
+);
+//createStacknav é oque faz a pagina carregar.
+export default createAppContainer(navigator);
